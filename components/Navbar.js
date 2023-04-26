@@ -13,8 +13,11 @@ import {
 export default function Navbar() {
   return (
     <aside>
-      <div>
-        <MenuItem text="AiTrend Admin" icon={BuildingStorefrontIcon} />
+      <div className="p-4">
+        <div className="mb-8">
+          <MenuItem text="AiTrend Admin" icon={BuildingStorefrontIcon} />
+        </div>
+
         <div className="flex flex-col gap-4">
           <Link href={"/"}>
             <MenuItem text="Dashboard" icon={HomeIcon} />
