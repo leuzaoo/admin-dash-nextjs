@@ -19,9 +19,11 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-blue-900 min-h-screen">
+    <div className="bg-amber-500 min-h-screen flex">
       <Navbar />
-      <div>logged in {session.user.email}</div>
+      <div className="bg-white flex-grow my-2 mr-2 rounded-lg p-4">
+        logged in {session.user.email}
+      </div>
     </div>
   );
 }
