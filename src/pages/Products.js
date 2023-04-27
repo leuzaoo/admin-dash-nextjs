@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { PlusSmallIcon } from "@heroicons/react/24/outline";
 
-export default function Products({ icon: Icon }) {
+export default function Products() {
   return (
     <Layout>
       <div>
