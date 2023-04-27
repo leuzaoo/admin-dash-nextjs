@@ -1,4 +1,5 @@
 import Layout from "@/src/components/Layout";
+import Image from "next/image";
 
 import { useSession } from "next-auth/react";
 
@@ -12,7 +13,14 @@ export default function Home() {
         </h2>
 
         <div>
-          <img src={session?.user?.image} alt="User picture" />
+          <Image
+            className="w-20"
+            src={session?.user?.image}
+            alt="User picture"
+            width={180}
+            height={180}
+            priority
+          />
         </div>
       </div>
     </Layout>
