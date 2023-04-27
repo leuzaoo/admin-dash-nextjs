@@ -15,10 +15,9 @@ export default function Home() {
         <div>
           <Image
             src={session?.user?.image}
-            alt="User image."
-            className="w-16 h-16"
-            width={600}
-            height={800}
+            alt="User picture"
+            width={60}
+            height={60}
           />
         </div>
       </div>
