@@ -1,9 +1,18 @@
+/* eslint-disable react/jsx-key */
 import Layout from "@/src/components/Layout";
 import Link from "next/link";
+import axios from "axios";
 
-import { PlusSmallIcon } from "@heroicons/react/24/outline";
+import { PencilSquareIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
+import { useEffect, useState } from "react";
 
 export default function Products() {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    axios.get("/api/products").then((response) => {
+      setProducts(response.data);
+    });
+  }, []);
   return (
     <Layout>
       <div>
@@ -13,6 +22,28 @@ export default function Products() {
             <PlusSmallIcon className="w-6" />
           </div>
         </Link>
+      </div>
+      <div>
+        <table className="basic mt-4">
+          <thead>
+            <tr>
+              <td>Product Name</td>
+              <td className="text-center">Editar</td>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr>
+                <td>{product.title}</td>
+                <td>
+                  <Link href={"/products/edit/" + product._id} className="flex px-4">
+                    <PencilSquareIcon className="w-6" />
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </Layout>
   );

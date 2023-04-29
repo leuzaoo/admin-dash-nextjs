@@ -11,4 +11,14 @@ textarea {
   @apply min-h-[80px] pt-2;
 }
 
+table.basic {
+  @apply w-full;
+}
 
+table.basic thead tr td {
+  @apply bg-white border border-slate-400 p-1 w-full;
+}
+
+table.basic tbody tr td {
+  @apply border-slate-400 border p-1;
+}
