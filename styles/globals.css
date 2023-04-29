@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input,
+textarea {
+  @apply h-10 pl-2 flex border-[1px] rounded-lg border-gray-300 outline-none focus:text-sm focus:transition-all duration-300 focus:duration-300 focus:border-blue-400;
+}
+
+textarea {
+  @apply min-h-[80px] pt-2;
+}
+
+
