@@ -8,7 +8,7 @@ export default function Products() {
     <Layout>
       <div>
         <Link href={"/products/new-products"} className="flex items-center">
-          <div className="bg-cyan-700 flex px-4 py-2 text-white rounded-tr-[16px] rounded-tl-[8px] rounded-bl-[16px] rounded-br-[8px]">
+          <div className="bg-black flex px-4 py-2 text-white rounded-tr-[16px] rounded-tl-[8px] rounded-bl-[16px] rounded-br-[8px]">
             <span>Adicionar</span>
             <PlusSmallIcon className="w-6" />
           </div>
