@@ -4,33 +4,33 @@ import { useRouter } from "next/router";
 import MenuItem from "./MenuItem";
 
 import {
-  BuildingStorefrontIcon,
-  HomeIcon,
+  RectangleGroupIcon,
   ListBulletIcon,
   PaperClipIcon,
   Cog6ToothIcon,
+  ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
-  const inactiveLink = "p-1";
-  const activeLink = `${inactiveLink} bg-yellow-700 rounded-l-lg`;
+  const inactiveLink = "p-3";
+  const activeLink = `${inactiveLink} transition ease-in duration-300 ml-4 bg-black text-white rounded-l-lg`;
   const router = useRouter();
 
   const { pathname } = router;
 
   return (
     <aside>
-      <div className="pt-4 pl-4">
-        <div className="mb-8 pr-20">
-          <MenuItem text="AiTrend Admin" icon={BuildingStorefrontIcon} />
+      <div className="pt-4">
+        <div className="pr-32 flex pt-4 pl-4 pb-4 border-b-[1px] border-slate-400">
+          <h3 className="ml-2 font-bold text-2xl">AiTrend</h3>
         </div>
 
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 pt-4">
           <Link
             href={"/"}
             className={pathname === "/" ? activeLink : inactiveLink}
           >
-            <MenuItem text="Dashboard" icon={HomeIcon} />
+            <MenuItem text="Dashboard" icon={RectangleGroupIcon} />
           </Link>
           <Link
             href={"/products"}
@@ -54,6 +54,10 @@ export default function Navbar() {
           >
             <MenuItem text="Configurações" icon={Cog6ToothIcon} />
           </Link>
+          <div className="flex pl-3">
+            <ArrowLeftOnRectangleIcon className="w-6" />
+            <button className="pl-2">Logout</button>
+          </div>
         </div>
       </div>
     </aside>
