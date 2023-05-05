@@ -8,10 +8,10 @@ export default function Layout({ children }) {
     return (
       <div className="flex justify-center items-center min-w-screen min-h-screen">
         <button
-          onClick={() => signIn("google")}
+          onClick={() => signIn()}
           className="bg-amber-200 p-2 px-4 rounded-lg w-full mr-16"
         >
-          <b>Login with Google</b>
+          <b>Login</b>
         </button>
       </div>
     );

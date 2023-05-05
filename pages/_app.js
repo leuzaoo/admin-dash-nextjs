@@ -13,10 +13,10 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   return (
-    <main className={roboto.className}>
-      <SessionProvider session={session}>
+    <SessionProvider session={session}>
+      <main className={roboto.className}>
         <Component {...pageProps} />
-      </SessionProvider>
-    </main>
+      </main>
+    </SessionProvider>
   );
 }
