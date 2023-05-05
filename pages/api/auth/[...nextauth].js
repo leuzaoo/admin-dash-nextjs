@@ -1,15 +1,36 @@
-import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { mongooseConnect } from "@/lib/mongoose";
+import { User } from "@/models/User";
 import NextAuth from "next-auth";
-
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import clientPromise from "@/lib/mongodb";
 
 export default NextAuth({
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+    CredentialsProvider({
+      name: "Credentials",
+
+      credentials: {
+        email: { label: "email", type: "text", placeholder: "jsmith" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials, req) {
+        console.log(credentials);
+
+        try {
+          await mongooseConnect();
+          const user = await User.find({
+            email: credentials.email,
+            password: credentials.password,
+          });
+          console.log(user);
+          if (user) {
+            return { id: user._id };
+          } else {
+            return null;
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      },
     }),
   ],
-  adapter: MongoDBAdapter(clientPromise),
 });
