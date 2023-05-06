@@ -3,7 +3,11 @@ import Layout from "@/src/components/Layout";
 import Link from "next/link";
 import axios from "axios";
 
-import { PencilSquareIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
+import {
+  PencilSquareIcon,
+  PlusSmallIcon,
+  TrashIcon,
+} from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 
 export default function Products() {
@@ -28,7 +32,8 @@ export default function Products() {
           <thead>
             <tr>
               <td>Product Name</td>
-              <td className="text-center">Editar</td>
+              <td className="text-center">Edit</td>
+              <td className="text-center">Delete</td>
             </tr>
           </thead>
           <tbody>
@@ -36,8 +41,19 @@ export default function Products() {
               <tr>
                 <td>{product.title}</td>
                 <td>
-                  <Link href={"/products/edit/" + product._id} className="flex px-4">
+                  <Link
+                    href={"/products/edit/" + product._id}
+                    className="flex px-4"
+                  >
                     <PencilSquareIcon className="w-6" />
+                  </Link>
+                </td>
+                <td>
+                  <Link
+                    href={"/products/delete/" + product._id}
+                    className="flex px-4"
+                  >
+                    <TrashIcon className="w-6" />
                   </Link>
                 </td>
               </tr>
