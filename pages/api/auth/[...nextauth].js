@@ -21,8 +21,7 @@ export default NextAuth({
             email: credentials.email,
             password: credentials.password,
           });
-          console.log(user);
-          if (user) {
+            if (user) {
             return { id: user._id };
           } else {
             return null;

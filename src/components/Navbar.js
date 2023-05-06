@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { signOut } from "next-auth/react";
+
 import MenuItem from "./MenuItem";
 
 import {
@@ -57,7 +59,9 @@ export default function Navbar() {
           </Link>
           <div className="flex pl-3 py-4 hover:bg-red-800 hover:mx-4 hover:rounded-xl hover:text-white hover:cursor-pointer duration-300">
             <ArrowLeftOnRectangleIcon className="w-6" />
-            <button className="pl-2 ">Logout</button>
+            <button className="pl-2 " onClick={() => signOut()}>
+              Logout
+            </button>
           </div>
         </div>
       </div>
