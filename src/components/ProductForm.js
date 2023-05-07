@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 
 export default function ProductForm({
   _id,
   title: existingTitle,
   description: existingDescription,
   price: existingPrice,
+  images,
 }) {
   const [title, setTitle] = useState(existingTitle || "");
   const [description, setDescription] = useState(existingDescription || "");
@@ -19,7 +21,7 @@ export default function ProductForm({
     const data = { title, description, price };
     if (_id) {
       //update
-      await axios.put("/api/products", {...data, _id});
+      await axios.put("/api/products", { ...data, _id });
     } else {
       //create
       await axios.post("/api/products", data);
@@ -28,6 +30,21 @@ export default function ProductForm({
   }
   if (goToProducts) {
     router.push("/products");
+  }
+
+  async function uploadImages(ev) {
+    const files = ev.target?.files;
+    if (files?.length > 0) {
+      const data = new FormData();
+      for (const file of files) {
+        data.append("file", file);
+      }
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: data,
+      })
+      console.log(res);
+    }
   }
 
   return (
@@ -40,6 +57,15 @@ export default function ProductForm({
           value={title}
           onChange={(ev) => setTitle(ev.target.value)}
         />
+        <label className="text-sm font-bold">Imagens*</label>
+        <label className="cursor-pointer w-24 h-24 border rounded-lg border-gray-400 flex flex-col items-center justify-center  text-gray-400 bg-gray-200">
+          <ArrowUpTrayIcon className="w-6" />
+          <span>Adicionar</span>
+          <input type="file" onChange={uploadImages} className="hidden" />
+        </label>
+        <div>
+          {!images?.length && <div>Este produto ainda não possui imagens.</div>}
+        </div>
         <textarea
           placeholder="Descrição"
           value={description}
