@@ -22,3 +22,7 @@ table.basic thead tr td {
 table.basic tbody tr td {
   @apply border-slate-400 border p-1;
 }
+
+img{
+  max-height: 100%;
+}
