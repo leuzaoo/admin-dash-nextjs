@@ -15,6 +15,7 @@
     "axios": "^1.4.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
+    "mime-types": "^2.1.35",
     "mongodb": "^5.3.0",
     "mongoose": "^7.1.0",
     "multiparty": "^4.2.3",
