@@ -23,8 +23,7 @@ export default NextAuth({
           } else {
             return null;
           }
-        } catch (error) {
-        }
+        } catch (error) {}
       },
     }),
   ],
