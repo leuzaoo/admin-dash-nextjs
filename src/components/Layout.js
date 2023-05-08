@@ -1,10 +1,10 @@
 import Navbar from "@/src/components/Navbar";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 
 export default function Layout({ children }) {
   const { data: session } = useSession();
-  if (!session) {
+   if (!session) {
     return (
       <div className="flex justify-center items-center min-w-screen min-h-screen">
         <button

@@ -8,11 +8,12 @@ export default function ProductForm({
   title: existingTitle,
   description: existingDescription,
   price: existingPrice,
-  images,
+  images: existingImages,
 }) {
   const [title, setTitle] = useState(existingTitle || "");
   const [description, setDescription] = useState(existingDescription || "");
   const [price, setPrice] = useState(existingPrice || "");
+  const [images, setImages] = useState(existingImages || "");
   const [goToProducts, setGoToProducts] = useState(false);
   const router = useRouter();
 
@@ -39,11 +40,10 @@ export default function ProductForm({
       for (const file of files) {
         data.append("file", file);
       }
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: data,
-      })
-      console.log(res);
+      const res = await axios.post("/api/upload", data);
+      setImages((oldImages) => {
+        return [...oldImages, ...res.data.links];
+      });
     }
   }
 
@@ -58,13 +58,25 @@ export default function ProductForm({
           onChange={(ev) => setTitle(ev.target.value)}
         />
         <label className="text-sm font-bold">Imagens*</label>
-        <label className="cursor-pointer w-24 h-24 border rounded-lg border-gray-400 flex flex-col items-center justify-center  text-gray-400 bg-gray-200">
-          <ArrowUpTrayIcon className="w-6" />
-          <span>Adicionar</span>
-          <input type="file" onChange={uploadImages} className="hidden" />
-        </label>
-        <div>
-          {!images?.length && <div>Este produto ainda não possui imagens.</div>}
+        <div className="flex flex-wrap gap-2 items-center">
+          {!!images?.length &&
+            images.map((link) => (
+              <div key={link} className="h-24">
+                <img className="rounded-lg" src={link} />
+              </div>
+            ))}
+          <label className="flex items-center justify-center gap-2 cursor-pointer w-32 h-12 rounded-tl-[20px] rounded-tr-[10px] rounded-bl-[10px] rounded-br-[20px]  text-white bg-black">
+            <ArrowUpTrayIcon className="w-6" />
+            <span>Adicionar</span>
+            <input type="file" onChange={uploadImages} className="hidden" />
+          </label>
+          <div>
+            {!images?.length && (
+              <div>
+                Este produto ainda <b> não possui </b> imagens.
+              </div>
+            )}
+          </div>
         </div>
         <textarea
           placeholder="Descrição"
