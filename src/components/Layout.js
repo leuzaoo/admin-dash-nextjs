@@ -4,14 +4,14 @@ import { useSession, signIn } from "next-auth/react";
 
 export default function Layout({ children }) {
   const { data: session } = useSession();
-   if (!session) {
+  if (!session) {
     return (
-      <div className="flex justify-center items-center min-w-screen min-h-screen">
+      <div className="flex bg-gray-800 justify-center items-center min-w-screen min-h-screen">
         <button
           onClick={() => signIn()}
-          className="bg-amber-200 p-2 px-4 rounded-lg w-full mr-16"
+          className="bg-white text-black py-3 px-5 rounded-tl-[10px] rounded-tr-[20px] rounded-bl-[20px] rounded-br-[10px]"
         >
-          <b>Login</b>
+          <b>Fazer Login</b>
         </button>
       </div>
     );
