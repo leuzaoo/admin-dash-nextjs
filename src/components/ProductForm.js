@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { ReactSortable } from "react-sortablejs";
+
 import { useRouter } from "next/router";
-import axios from "axios";
+
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
+
+import axios from "axios";
 import LoaderIcon from "./LoaderIcon";
 
 export default function ProductForm({
@@ -50,6 +54,9 @@ export default function ProductForm({
       setIsUploading(false);
     }
   }
+  function updateImagesOrder(images) {
+    setImages(images);
+  }
 
   return (
     <form onSubmit={saveProduct}>
@@ -63,12 +70,18 @@ export default function ProductForm({
         />
         <label className="text-sm font-bold">Imagens*</label>
         <div className="flex flex-wrap gap-2 items-center">
-          {!!images?.length &&
-            images.map((link) => (
-              <div key={link} className="h-24">
-                <img className="rounded-lg" src={link} />
-              </div>
-            ))}
+          <ReactSortable
+            list={images}
+            className="flex flex-wrap gap-2 "
+            setList={updateImagesOrder}
+          >
+            {!!images?.length &&
+              images.map((link) => (
+                <div key={link} className="h-24">
+                  <img className="rounded-lg" src={link} />
+                </div>
+              ))}
+          </ReactSortable>
           {isUploading && (
             <div className="h-24 flex items-center">
               <LoaderIcon />
