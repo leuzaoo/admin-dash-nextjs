@@ -8,8 +8,8 @@ export default NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "email", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
+        email: { label: "Email", type: "text", placeholder: "Email" },
+        password: { label: "Password", type: "password", placeholder: "Senha" },
       },
       async authorize(credentials, req) {
         try {
