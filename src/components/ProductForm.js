@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
+import LoaderIcon from "./LoaderIcon";
 
 export default function ProductForm({
   _id,
@@ -15,6 +16,7 @@ export default function ProductForm({
   const [price, setPrice] = useState(existingPrice || "");
   const [images, setImages] = useState(existingImages || "");
   const [goToProducts, setGoToProducts] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const router = useRouter();
 
   async function saveProduct(ev) {
@@ -36,6 +38,7 @@ export default function ProductForm({
   async function uploadImages(ev) {
     const files = ev.target?.files;
     if (files?.length > 0) {
+      setIsUploading(true);
       const data = new FormData();
       for (const file of files) {
         data.append("file", file);
@@ -44,6 +47,7 @@ export default function ProductForm({
       setImages((oldImages) => {
         return [...oldImages, ...res.data.links];
       });
+      setIsUploading(false);
     }
   }
 
@@ -65,19 +69,18 @@ export default function ProductForm({
                 <img className="rounded-lg" src={link} />
               </div>
             ))}
+          {isUploading && (
+            <div className="h-24 flex items-center">
+              <LoaderIcon />
+            </div>
+          )}
           <label className="flex items-center justify-center gap-2 cursor-pointer w-32 h-12 rounded-tl-[20px] rounded-tr-[10px] rounded-bl-[10px] rounded-br-[20px]  text-white bg-black">
             <ArrowUpTrayIcon className="w-6" />
             <span>Adicionar</span>
             <input type="file" onChange={uploadImages} className="hidden" />
           </label>
-          <div>
-            {!images?.length && (
-              <div>
-                Este produto ainda <b> não possui </b> imagens.
-              </div>
-            )}
-          </div>
         </div>
+
         <textarea
           placeholder="Descrição"
           value={description}
@@ -91,13 +94,20 @@ export default function ProductForm({
           value={price}
           onChange={(ev) => setPrice(ev.target.value)}
         />
-
-        <button
-          type="submit"
-          className="bg-black text-white rounded-lg center w-32 px-4 py-2 transition-all duration-300 hover:bg-blue-500 hover:transition-all hover:duration-300"
-        >
-          Salvar
-        </button>
+        <div className="flex gap-4">
+          <button
+            type="submit"
+            className="bg-black text-white rounded-lg center w-32 px-4 py-2 transition-all duration-700 hover:bg-blue-500 hover:transition-all hover:duration-300"
+          >
+            Salvar
+          </button>
+          <button
+            href="/products"
+            className="bg-gray-200 w-[128px] h-[40px] rounded-lg transition-all duration-700 hover:bg-blue-500 hover:transition-all hover:text-white hover:duration-300"
+          >
+            Voltar
+          </button>
+        </div>
       </div>
     </form>
   );
