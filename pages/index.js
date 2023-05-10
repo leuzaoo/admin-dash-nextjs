@@ -9,7 +9,7 @@ export default function Home() {
     <Layout>
       <div className="text-black flex justify-between">
         <h2>
-          Olá, <b>{session?.user?.name}.</b>
+          Seja bem vindo! <b>{/*session?.user?.email*/}</b>
         </h2>
 
         <div>
