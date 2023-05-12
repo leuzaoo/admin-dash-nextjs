@@ -1,7 +1,7 @@
 export default function MenuItem({ icon: Icon, text }) {
   return (
-    <div className="flex">
-      <Icon className="w-6" />
+    <div className="flex items-center">
+      <Icon className="w-5" />
       <span className="ml-2">{text}</span>
     </div>
   );

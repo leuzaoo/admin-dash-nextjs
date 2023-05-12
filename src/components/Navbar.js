@@ -15,17 +15,17 @@ import {
 
 export default function Navbar() {
   const inactiveLink =
-    "p-3 hover:bg-black hover:mx-4 hover:rounded-xl hover:text-white duration-300";
-  const activeLink = `${inactiveLink} font-bold pl-6 `;
+    "p-4 ml-4 text-sm text-gray-400  hover:bg-black hover:mx-4 rounded-xl hover:rounded-xl  hover:text-white duration-300";
+  const activeLink = `${inactiveLink} font-bold !text-black hover:!text-white text-base pl-10`;
   const router = useRouter();
 
   const { pathname } = router;
 
   return (
     <aside>
-      <div className="pt-4">
-        <div className="pr-32 flex pt-4 pl-4 pb-4 border-b-[1px] border-slate-400">
-          <h3 className="ml-2 font-bold text-2xl">AiTrend</h3>
+      <div className="pt-4 min-h-screen bg-white my-2 mx-2 rounded-md">
+        <div className="pr-32 flex pt-4 pl-4 pb-4">
+          <img src="/aitrend-logo.png" className="w-24" />
         </div>
 
         <div className="flex flex-col gap-8 pt-4">
@@ -57,13 +57,13 @@ export default function Navbar() {
           >
             <MenuItem text="Configurações" icon={Cog6ToothIcon} />
           </Link>
-          <div
-            onClick={() => signOut()}
-            className="flex pl-3 py-4 hover:bg-red-800 hover:mx-4 hover:rounded-xl hover:text-white hover:cursor-pointer duration-300"
-          >
-            <ArrowLeftOnRectangleIcon className="w-6" />
-            <button className="pl-2 ">Logout</button>
-          </div>
+        </div>
+        <div
+          onClick={() => signOut()}
+          className="flex pl-3 py-4 mb-4 ml-4 mt-8 hover:bg-red-800 hover:mx-4 hover:rounded-xl hover:text-white hover:cursor-pointer duration-300"
+        >
+          <ArrowLeftOnRectangleIcon className="w-6" />
+          <button className="pl-2">Logout</button>
         </div>
       </div>
     </aside>

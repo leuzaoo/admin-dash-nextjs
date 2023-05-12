@@ -69,7 +69,7 @@ export default function ProductForm({
           onChange={(ev) => setTitle(ev.target.value)}
         />
         <label className="text-sm font-bold">Imagens*</label>
-        <div className="flex flex-wrap gap-2 items-end">
+        <div className="flex flex-wrap items-end gap-2">
           <ReactSortable
             list={images}
             className="flex flex-wrap gap-2 "
@@ -87,7 +87,7 @@ export default function ProductForm({
               <LoaderIcon />
             </div>
           )}
-          <label className="flex items-center justify-center gap-2 cursor-pointer w-10 h-10 py-2 drop-shadow-md rounded-full text-blue-200 bg-blue-600">
+          <label className="flex items-center gap-2 cursor-pointer py-2 px-4 drop-shadow-md rounded-lg text-white bg-blue-600">
             <ArrowUpTrayIcon className="w-5" />
             <input type="file" onChange={uploadImages} className="hidden" />
           </label>
@@ -109,15 +109,15 @@ export default function ProductForm({
         <div className="flex gap-4">
           <button
             type="submit"
-            className="bg-black text-white rounded-lg center w-32 px-4 py-2 transition-all duration-700 hover:bg-blue-500 hover:transition-all hover:duration-300"
+            className="bg-black text-white rounded-lg center w-[94.8px] h-[40px] transition-all duration-700 hover:bg-blue-500 hover:transition-all hover:duration-300"
           >
             Salvar
           </button>
           <button
             href="/products"
-            className="bg-gray-200 w-[128px] h-[40px] rounded-lg transition-all duration-700 hover:bg-blue-500 hover:transition-all hover:text-white hover:duration-300"
+            className="bg-gray-200 py-2 px-4  rounded-lg transition-all duration-700 hover:bg-red-500 hover:transition-all hover:text-white hover:duration-300"
           >
-            Voltar
+            Cancelar
           </button>
         </div>
       </div>
