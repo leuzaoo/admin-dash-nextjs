@@ -16,7 +16,7 @@ import {
 export default function Navbar() {
   const inactiveLink =
     "p-3 hover:bg-black hover:mx-4 hover:rounded-xl hover:text-white duration-300";
-  const activeLink = `${inactiveLink} mx-4 bg-black text-white rounded-xl`;
+  const activeLink = `${inactiveLink} font-bold pl-6 `;
   const router = useRouter();
 
   const { pathname } = router;
@@ -57,11 +57,12 @@ export default function Navbar() {
           >
             <MenuItem text="Configurações" icon={Cog6ToothIcon} />
           </Link>
-          <div className="flex pl-3 py-4 hover:bg-red-800 hover:mx-4 hover:rounded-xl hover:text-white hover:cursor-pointer duration-300">
+          <div
+            onClick={() => signOut()}
+            className="flex pl-3 py-4 hover:bg-red-800 hover:mx-4 hover:rounded-xl hover:text-white hover:cursor-pointer duration-300"
+          >
             <ArrowLeftOnRectangleIcon className="w-6" />
-            <button className="pl-2 " onClick={() => signOut()}>
-              Logout
-            </button>
+            <button className="pl-2 ">Logout</button>
           </div>
         </div>
       </div>
