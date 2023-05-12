@@ -69,7 +69,7 @@ export default function ProductForm({
           onChange={(ev) => setTitle(ev.target.value)}
         />
         <label className="text-sm font-bold">Imagens*</label>
-        <div className="flex flex-wrap gap-2 items-center">
+        <div className="flex flex-wrap gap-2 items-end">
           <ReactSortable
             list={images}
             className="flex flex-wrap gap-2 "
@@ -87,9 +87,8 @@ export default function ProductForm({
               <LoaderIcon />
             </div>
           )}
-          <label className="flex items-center justify-center gap-2 cursor-pointer w-32 h-12 rounded-tl-[20px] rounded-tr-[10px] rounded-bl-[10px] rounded-br-[20px]  text-white bg-black">
-            <ArrowUpTrayIcon className="w-6" />
-            <span>Adicionar</span>
+          <label className="flex items-center justify-center gap-2 cursor-pointer w-10 h-10 py-2 drop-shadow-md rounded-full text-blue-200 bg-blue-600">
+            <ArrowUpTrayIcon className="w-5" />
             <input type="file" onChange={uploadImages} className="hidden" />
           </label>
         </div>

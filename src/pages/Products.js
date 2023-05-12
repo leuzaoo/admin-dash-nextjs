@@ -21,7 +21,7 @@ export default function Products() {
     <Layout>
       <div>
         <Link href={"/products/new"} className="flex items-center">
-          <div className="bg-black flex px-4 py-2 text-white rounded-tr-[16px] rounded-tl-[8px] rounded-bl-[16px] rounded-br-[8px]">
+          <div className="bg-black flex px-4 py-2 text-white rounded-tr-[16px] rounded-tl-[8px] rounded-bl-[16px] rounded-br-[8px] hover:bg-blue-600 hover:transition-all hover:duration-300 duration-300">
             <span>Adicionar</span>
             <PlusSmallIcon className="w-6" />
           </div>
@@ -31,9 +31,9 @@ export default function Products() {
         <table className="basic mt-4">
           <thead>
             <tr>
-              <td>Product Name</td>
-              <td className="text-center">Edit</td>
-              <td className="text-center">Delete</td>
+              <td className="font-bold">Nome do Produto</td>
+              <td className="text-center font-bold">Editar</td>
+              <td className="text-center font-bold">Deletar</td>
             </tr>
           </thead>
           <tbody>
@@ -45,13 +45,13 @@ export default function Products() {
                     href={"/products/edit/" + product._id}
                     className="flex px-4"
                   >
-                    <PencilSquareIcon className="w-6" />
+                    <PencilSquareIcon className="w-6 hover:text-blue-600 hover:transition-all hover:duration-300 duration-300" />
                   </Link>
                 </td>
                 <td>
                   <Link
                     href={"/products/delete/" + product._id}
-                    className="flex px-4"
+                    className="flex px-4 hover:text-red-600 hover:transition-all hover:duration-300 duration-300"
                   >
                     <TrashIcon className="w-6" />
                   </Link>
