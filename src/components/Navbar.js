@@ -11,6 +11,7 @@ import {
   PaperClipIcon,
   Cog6ToothIcon,
   ArrowLeftOnRectangleIcon,
+  DevicePhoneMobileIcon
 } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
@@ -27,7 +28,6 @@ export default function Navbar() {
         <div className="pr-32 flex pt-4 pl-4 pb-4">
           <img src="/aitrend-logo.png" className="w-24" />
         </div>
-
         <div className="flex flex-col gap-8 pt-4">
           <Link
             href={"/"}
@@ -41,7 +41,15 @@ export default function Navbar() {
               pathname.includes("/products") ? activeLink : inactiveLink
             }
           >
-            <MenuItem text="Produtos" icon={ListBulletIcon} />
+            <MenuItem text="Produtos" icon={DevicePhoneMobileIcon} />
+          </Link>
+          <Link
+            href={"/categories"}
+            className={
+              pathname.includes("/categories") ? activeLink : inactiveLink
+            }
+          >
+            <MenuItem text="Categorias" icon={ListBulletIcon} />
           </Link>
           <Link
             href={"/orders"}
