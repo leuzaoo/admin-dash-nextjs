@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 input,
-textarea {
+textarea,
+select {
   @apply h-10 pl-2 flex border-[1px] rounded-lg border-gray-300 outline-none focus:text-sm focus:transition-all duration-300 focus:duration-300 focus:border-blue-400;
 }
 
@@ -25,4 +26,8 @@ table.basic tbody tr td {
 
 img {
   max-height: 100%;
+}
+
+select:focus {
+  @apply border-blue-600;
 }

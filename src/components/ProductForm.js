@@ -87,8 +87,9 @@ export default function ProductForm({
               <LoaderIcon />
             </div>
           )}
-          <label className="flex items-center gap-2 cursor-pointer py-2 px-4 drop-shadow-md rounded-lg text-white bg-blue-600">
+          <label className="flex gap-1 cursor-pointer py-2 px-4 drop-shadow-md rounded-lg text-white bg-blue-600 hover:bg-black hover:duration-500 duration-500">
             <ArrowUpTrayIcon className="w-5" />
+            <span className="text-sm">Upload</span>
             <input type="file" onChange={uploadImages} className="hidden" />
           </label>
         </div>
@@ -109,7 +110,7 @@ export default function ProductForm({
         <div className="flex gap-4">
           <button
             type="submit"
-            className="bg-black text-white rounded-lg center w-[94.8px] h-[40px] transition-all duration-700 hover:bg-blue-500 hover:transition-all hover:duration-300"
+            className="bg-blue-600 text-white rounded-lg center w-[94.8px] h-[40px] transition-all  hover:bg-black hover:transition-all hover:duration-500 duration-500"
           >
             Salvar
           </button>
