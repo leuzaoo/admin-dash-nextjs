@@ -29,5 +29,5 @@ img {
 }
 
 select:focus {
-  @apply border-blue-600;
+  @apply border-blue-600 text-base;
 }
