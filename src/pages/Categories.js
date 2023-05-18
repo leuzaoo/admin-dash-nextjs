@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Layout from "@/src/components/Layout";
 import SaveButton from "@/src/components/SaveButton";
+import EditButton from "@/src/components/EditButton";
+import DeleteButton from "@/src/components/DeleteButton";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -52,6 +54,9 @@ export default function Categories() {
         <thead>
           <tr>
             <td>Nome da Categoria</td>
+            <td>Categoria Principal</td>
+            <td>Editar</td>
+            <td>Excluir</td>
           </tr>
         </thead>
         <tbody>
@@ -60,6 +65,13 @@ export default function Categories() {
               // eslint-disable-next-line react/jsx-key
               <tr>
                 <td>{category.name}</td>
+                <td>{category?.parent?.name}</td>
+                <td>
+                  <EditButton />
+                </td>
+                <td>
+                  <DeleteButton />
+                </td>
               </tr>
             ))}
         </tbody>
