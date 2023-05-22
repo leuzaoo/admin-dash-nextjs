@@ -12,13 +12,13 @@ export default function EditProductPage() {
     if (!id) {
       return;
     }
-    axios.get("/api/products?id="+id).then((response) => {
+    axios.get("/api/products?id=" + id).then((response) => {
       setProductInfo(response.data);
     });
   }, [id]);
   return (
     <Layout>
-      <h2>Editar produto</h2>
+      <h2 className="mb-4 font-bold">Edição de Produto*</h2>
       {productInfo && <ProductForm {...productInfo} />}
     </Layout>
   );
