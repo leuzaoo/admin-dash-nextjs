@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ReactSortable } from "react-sortablejs";
 
 import { useRouter } from "next/router";
@@ -14,18 +14,26 @@ export default function ProductForm({
   description: existingDescription,
   price: existingPrice,
   images: existingImages,
+  category: assignedCategory,
 }) {
   const [title, setTitle] = useState(existingTitle || "");
   const [description, setDescription] = useState(existingDescription || "");
+  const [category, setCategory] = useState(assignedCategory || "");
   const [price, setPrice] = useState(existingPrice || "");
   const [images, setImages] = useState(existingImages || "");
   const [goToProducts, setGoToProducts] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [categories, setCategories] = useState([]);
   const router = useRouter();
+  useEffect(() => {
+    axios.get("/api/categories").then((result) => {
+      setCategories(result.data);
+    });
+  }, []);
 
   async function saveProduct(ev) {
     ev.preventDefault();
-    const data = { title, description, price, images };
+    const data = { title, description, price, images, category };
     if (_id) {
       //update
       await axios.put("/api/products", { ...data, _id });
@@ -68,7 +76,21 @@ export default function ProductForm({
           value={title}
           onChange={(ev) => setTitle(ev.target.value)}
         />
-        <label className="text-sm font-bold">Imagens*</label>
+        <label className="mt-4 text-sm font-bold">Categoria*</label>
+        <select
+          value={category}
+          onChange={(ev) => setCategory(ev.target.value)}
+        >
+          <option value="">Sem categoria</option>
+          {categories.length > 0 &&
+            categories.map((c) => (
+              // eslint-disable-next-line react/jsx-key
+              <option key={c._id} value={c.id}>
+                {c.name}
+              </option>
+            ))}
+        </select>
+        <label className="mt-4 text-sm font-bold">Imagens*</label>
         <div className="flex flex-wrap items-end gap-2">
           <ReactSortable
             list={images}
@@ -100,7 +122,7 @@ export default function ProductForm({
           onChange={(ev) => setDescription(ev.target.value)}
         />
 
-        <label className="text-sm font-bold">Preço*</label>
+        <label className="mt-4 text-sm font-bold">Preço*</label>
         <input
           type="number"
           placeholder="1.999,90"
