@@ -4,8 +4,12 @@ import SaveButton from "@/src/components/SaveButton";
 import EditButton from "@/src/components/EditButton";
 import DeleteButton from "@/src/components/DeleteButton";
 
+import { PlusIcon } from "@heroicons/react/24/outline";
+
 import { useEffect, useState } from "react";
+
 import { withSwal } from "react-sweetalert2";
+
 import axios from "axios";
 
 function Categories({ swal }) {
@@ -13,6 +17,7 @@ function Categories({ swal }) {
   const [name, setName] = useState("");
   const [parentCategory, setParentCategory] = useState("");
   const [categories, setCategories] = useState([]);
+  const [properties, setProperties] = useState([]);
   useEffect(() => {
     fetchCategories();
   }, []);
@@ -63,36 +68,105 @@ function Categories({ swal }) {
       });
   }
 
+  function addProperty() {
+    setProperties((prev) => {
+      return [...prev, { name: "", values: "" }];
+    });
+  }
+
+  function handlePropertyNameChange(index, property, newName) {
+    setProperties((prev) => {
+      const properties = [...prev];
+      properties[index].name = newName;
+      return properties;
+    });
+  }
+
+  function handlePropertyValuesChange(index, property, newValues) {
+    setProperties((prev) => {
+      const properties = [...prev];
+      properties[index].values = newValues;
+      return properties;
+    });
+  }
+
+  function removeProperty(indexToRemove) {
+    setProperties((prev) => {
+      return [...prev].filter((p, pIndex) => {
+        return pIndex !== indexToRemove;
+      });
+    });
+  }
+
   return (
     <Layout>
-      <h1>Categorias</h1>
-      <label>
+      <h1 className="font-bold">Categorias*</h1>
+      <label className="text-sm font-bold">
         {editedCategory
-          ? `Edit category ${editedCategory.name}`
-          : "Create new category"}
+          ? `Editando: ${editedCategory.name}.`
+          : "Criação de nova categoria*"}
       </label>
-      <form onSubmit={saveCategory} className="flex gap-4">
-        <input
-          type="text"
-          className="w-full"
-          placeholder={"Category Name"}
-          onChange={(ev) => setName(ev.target.value)}
-          value={name}
-        />
-        <select
-          value={parentCategory}
-          onChange={(ev) => setParentCategory(ev.target.value)}
-        >
-          <option value="">Seleciona uma categoria</option>
-          {categories.length > 0 &&
-            categories.map((category) => (
-              // eslint-disable-next-line react/jsx-key
-              <option value={category._id}>{category.name}</option>
+      <form onSubmit={saveCategory}>
+        <div className="flex gap-4">
+          <input
+            type="text"
+            className="w-full"
+            placeholder={"Category Name"}
+            onChange={(ev) => setName(ev.target.value)}
+            value={name}
+          />
+          <select
+            value={parentCategory}
+            onChange={(ev) => setParentCategory(ev.target.value)}
+          >
+            <option value="">Seleciona uma categoria</option>
+            {categories.length > 0 &&
+              categories.map((category) => (
+                <option value={category._id}>{category.name}</option>
+              ))}
+          </select>
+        </div>
+        <div className="mt-8">
+          <label className="block text-sm font-bold">Propriedades*</label>
+          <button
+            onClick={addProperty}
+            type="button"
+            className="flex mt-2 text-white bg-blue-600 px-4 py-2 rounded-tr-[16px] rounded-tl-[8px] rounded-bl-[16px] rounded-br-[8px] rounded-full"
+          >
+            Adicionar <PlusIcon className="w-6" />
+          </button>
+          {properties.length > 0 &&
+            properties.map((property, index) => (
+              <div className="flex gap-2 mt-2">
+                <input
+                  type="text"
+                  value={property.name}
+                  onChange={(ev) =>
+                    handlePropertyNameChange(index, property, ev.target.value)
+                  }
+                  placeholder="Nome (ex: Cor, Memória)"
+                  className="w-full"
+                />
+                <input
+                  type="text"
+                  value={property.values}
+                  onChange={(ev) =>
+                    handlePropertyValuesChange(index, property, ev.target.value)
+                  }
+                  placeholder="Valor (ex: Vermelho, 64GB)"
+                  className="w-full"
+                />
+                <button onClick={() => removeProperty(index)}>
+                  <DeleteButton />
+                </button>
+              </div>
             ))}
-        </select>
-        <SaveButton type="submit" text="Salvar" />
+        </div>
+        <div className="mt-8">
+          <SaveButton type="submit" text="Salvar" />
+        </div>
       </form>
-      <table className="basic mt-4">
+      <table className="basic mt-8">
         <thead>
           <tr>
             <td>Nome da Categoria</td>
@@ -104,7 +178,6 @@ function Categories({ swal }) {
         <tbody>
           {categories.length > 0 &&
             categories.map((category) => (
-              // eslint-disable-next-line react/jsx-key
               <tr>
                 <td>{category.name}</td>
                 <td>{category?.parent?.name}</td>
