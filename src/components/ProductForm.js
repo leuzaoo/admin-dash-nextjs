@@ -84,8 +84,7 @@ export default function ProductForm({
           <option value="">Sem categoria</option>
           {categories.length > 0 &&
             categories.map((c) => (
-              // eslint-disable-next-line react/jsx-key
-              <option key={c._id} value={c.id}>
+              <option key={c._id} value={c._id}>
                 {c.name}
               </option>
             ))}
