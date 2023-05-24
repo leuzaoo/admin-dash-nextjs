@@ -30,7 +30,14 @@ function Categories({ swal }) {
 
   async function saveCategory(ev) {
     ev.preventDefault();
-    const data = { name, parentCategory };
+    const data = {
+      name,
+      parentCategory,
+      properties: properties.map((p) => ({
+        name: p.name,
+        values: p.values.split(","),
+      })),
+    };
     if (editedCategory) {
       data._id = editedCategory._id;
       await axios.put("/api/categories", data);
@@ -39,6 +46,8 @@ function Categories({ swal }) {
       await axios.post("/api/categories", data);
     }
     setName("");
+    setParentCategory("");
+    setProperties([]);
     fetchCategories();
   }
 
@@ -46,6 +55,12 @@ function Categories({ swal }) {
     setEditedCategory(category);
     setName(category.name);
     setParentCategory(category.parent?._id);
+    setProperties(
+      category.properties.map(({ name, values }) => ({
+        name,
+        values: values.join(","),
+      }))
+    );
   }
 
   function deleteCategory(category) {
@@ -156,45 +171,61 @@ function Categories({ swal }) {
                   placeholder="Valor (ex: Vermelho, 64GB)"
                   className="w-full"
                 />
-                <button onClick={() => removeProperty(index)}>
+                <button type="button" onClick={() => removeProperty(index)}>
                   <DeleteButton />
                 </button>
               </div>
             ))}
         </div>
-        <div className="mt-8">
+        <div className="flex items-center mt-4 gap-4">
+          {editedCategory && (
+            <button
+              type="button"
+              onClick={() => {
+                setEditedCategory(null);
+                setName("");
+                setParentCategory("");
+                setProperties([]);
+              }}
+              className="py-2 px-4 bg-red-400 text-white rounded-md"
+            >
+              Cancelar
+            </button>
+          )}
           <SaveButton type="submit" text="Salvar" />
         </div>
       </form>
-      <table className="basic mt-8">
-        <thead>
-          <tr>
-            <td>Nome da Categoria</td>
-            <td>Categoria Principal</td>
-            <td>Editar</td>
-            <td>Excluir</td>
-          </tr>
-        </thead>
-        <tbody>
-          {categories.length > 0 &&
-            categories.map((category) => (
-              <tr>
-                <td>{category.name}</td>
-                <td>{category?.parent?.name}</td>
-                <td>
-                  <button onClick={() => editCategory(category)}>
-                    <EditButton />
-                  </button>
-                </td>
-                <td>
-                  <button onClick={() => deleteCategory(category)}>
-                    <DeleteButton />
-                  </button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+      {!editedCategory && (
+        <table className="basic mt-8">
+          <thead>
+            <tr>
+              <td>Nome da Categoria</td>
+              <td>Categoria Principal</td>
+              <td>Editar</td>
+              <td>Excluir</td>
+            </tr>
+          </thead>
+          <tbody>
+            {categories.length > 0 &&
+              categories.map((category) => (
+                <tr>
+                  <td>{category.name}</td>
+                  <td>{category?.parent?.name}</td>
+                  <td>
+                    <button onClick={() => editCategory(category)}>
+                      <EditButton />
+                    </button>
+                  </td>
+                  <td>
+                    <button onClick={() => deleteCategory(category)}>
+                      <DeleteButton />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      )}
     </Layout>
   );
 }
