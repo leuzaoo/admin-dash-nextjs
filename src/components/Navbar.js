@@ -11,10 +11,10 @@ import {
   PaperClipIcon,
   Cog6ToothIcon,
   ArrowLeftOnRectangleIcon,
-  DevicePhoneMobileIcon
+  DevicePhoneMobileIcon,
 } from "@heroicons/react/24/outline";
 
-export default function Navbar() {
+export default function Navbar({ show }) {
   const inactiveLink =
     "p-4 ml-4 text-sm text-gray-400  hover:bg-black hover:mx-4 rounded-xl hover:rounded-xl  hover:text-white duration-300";
   const activeLink = `${inactiveLink} font-bold !text-black hover:!text-white text-base pl-10`;
@@ -24,7 +24,12 @@ export default function Navbar() {
 
   return (
     <aside>
-      <div className="pt-4 min-h-screen bg-white my-2 mx-2 rounded-md">
+      <div
+        className={
+          (show ? "left-0" : "-left-full ") +
+          "top-0 pt-4 min-h-screen bg-white my-2 mx-2 rounded-md fixed w-full h-full"
+        }
+      >
         <div className="pr-32 flex pt-4 pl-4 pb-4">
           <img src="/aitrend-logo.png" className="w-24" />
         </div>
