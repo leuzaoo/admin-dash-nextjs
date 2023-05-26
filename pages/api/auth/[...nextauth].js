@@ -3,6 +3,8 @@ import { mongooseConnect } from "@/lib/mongoose";
 import { User } from "@/models/User";
 import NextAuth from "next-auth";
 
+const adminEmails = ["teste1@teste1.com"];
+
 export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
@@ -28,4 +30,14 @@ export default NextAuth({
       },
     }),
   ],
+  // callbacks: {
+  //   session: ({ session, token, user }) => {
+  //     console.log(session, token, user);
+  //     return session;
+
+  //     //     } else {
+  //     //       return false;
+  //     //     }
+  //   },
+  // },
 });
