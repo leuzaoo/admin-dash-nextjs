@@ -1,8 +1,11 @@
 import Navbar from "@/src/components/Navbar";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
 import { useSession, signIn } from "next-auth/react";
+import { useState } from "react";
 
 export default function Layout({ children }) {
+  const [showNav, setShowNav] = useState(false);
   const { data: session } = useSession();
   if (!session) {
     return (
@@ -18,10 +21,15 @@ export default function Layout({ children }) {
   }
 
   return (
-    <div className="bg-gray-200 min-h-screen flex">
-      <Navbar />
-      <div className="bg-white flex-grow my-2 mr-2 rounded-lg p-4">
-        {children}
+    <div className="bg-gray-200 min-h-screen">
+      <button onClick={() => setShowNav(true)}>
+        <Bars3Icon className="w-6" />
+      </button>
+      <div className="flex">
+        <Navbar show={showNav} />
+        <div className="bg-white flex-grow my-2 mr-2 rounded-lg p-4">
+          {children}
+        </div>
       </div>
     </div>
   );
