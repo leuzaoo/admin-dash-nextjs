@@ -23,13 +23,13 @@ export default function Navbar({ show }) {
   const { pathname } = router;
 
   return (
-    <aside>
-      <div
-        className={
-          (show ? "left-0" : "-left-full ") +
-          "top-0 pt-4 min-h-screen bg-white my-2 mx-2 rounded-md fixed w-full h-full"
-        }
-      >
+    <aside
+      className={
+        (show ? "left-0" : "-left-full") +
+        " top-0 fixed bg-gray-200 h-full w-full transition-all md:static md:w-auto "
+      }
+    >
+      <div className="top-0 pt-4 min-h-screen bg-white my-2 mx-2 rounded-md">
         <div className="pr-32 flex pt-4 pl-4 pb-4">
           <img src="/aitrend-logo.png" className="w-24" />
         </div>
