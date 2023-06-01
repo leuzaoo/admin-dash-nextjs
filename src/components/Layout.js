@@ -3,7 +3,6 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 
 import { useSession, signIn } from "next-auth/react";
 import { useState } from "react";
-import Logo from "./Logo";
 
 export default function Layout({ children }) {
   const [showNav, setShowNav] = useState(false);
@@ -23,15 +22,14 @@ export default function Layout({ children }) {
 
   return (
     <div className="bg-gray-200 min-h-screen">
-      <div className="block md:hidden">
+      <div className="block md:hidden py-2 pl-2">
         <button onClick={() => setShowNav(true)}>
           <Bars3Icon className="w-6" />
-          <Logo />
         </button>
       </div>
       <div className="flex">
         <Navbar show={showNav} />
-        <div className="bg-white flex-grow my-2 mr-2 rounded-lg ml-2 p-4">
+        <div className="bg-white flex-grow mt-0 mb-2 md:my-2 mr-2 rounded-lg ml-2 p-4">
           {children}
         </div>
       </div>
