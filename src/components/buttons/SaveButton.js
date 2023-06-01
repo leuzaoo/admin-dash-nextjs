@@ -3,7 +3,7 @@ export default function SaveButton({ text, type }) {
     <div>
       <button
         type={type}
-        className="py-2 px-4 bg-black text-white rounded-lg duration-300 hover:bg-blue-600 hover:duration-300"
+        className="bg-blue-600 text-white rounded-lg center w-[94.8px] h-[40px] transition-all  hover:bg-black hover:transition-all hover:duration-500 duration-500"
       >
         {text}
       </button>
