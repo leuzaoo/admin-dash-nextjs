@@ -7,6 +7,7 @@ import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 
 import axios from "axios";
 import LoaderIcon from "./LoaderIcon";
+import InputField from "./InputField";
 
 export default function ProductForm({
   _id,
@@ -101,21 +102,20 @@ export default function ProductForm({
   return (
     <form onSubmit={saveProduct}>
       <div className="border-[1px] p-4 rounded flex flex-col gap-2">
-        <label className="text-sm text-gray-400">Nome do Produto*</label>
-        <input
-          className="bg-gray-100"
+        <label>Nome do Produto*</label>
+        <InputField
           type="text"
-          placeholder="Nome"
+          placeholder="iPhone 14 Pro Max"
           value={title}
           onChange={(ev) => setTitle(ev.target.value)}
         />
-        <label className="mt-4 text-sm text-gray-400">Categoria*</label>
+        <label className="mt-4">Categoria*</label>
         <select
           className="bg-gray-100"
           value={category}
           onChange={(ev) => setCategory(ev.target.value)}
         >
-          <option>Sem categoria</option>
+          <option>Escolha uma categoria</option>
           {categories.length > 0 &&
             categories.map((c) => (
               <option key={c._id} value={c._id}>
@@ -138,7 +138,7 @@ export default function ProductForm({
               </select>
             </div>
           ))}
-        <label className="mt-4 text-sm font-bold">Imagens*</label>
+        <label className="mt-4">Imagens*</label>
         <div className="flex flex-wrap items-end gap-2">
           <ReactSortable
             list={images}
@@ -170,7 +170,7 @@ export default function ProductForm({
           onChange={(ev) => setDescription(ev.target.value)}
         />
 
-        <label className="mt-4 text-sm font-bold">Preço*</label>
+        <label className="mt-4">Preço*</label>
         <input
           type="number"
           placeholder="1.999,90"

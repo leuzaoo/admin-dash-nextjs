@@ -1,13 +1,12 @@
 /* eslint-disable react/jsx-key */
+import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+
+import Add from "@/src/components/buttons/Add";
 import Layout from "@/src/components/Layout";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-
-import { PlusSmallIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
-
-import { PencilSquareIcon } from "@heroicons/react/24/outline";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -20,12 +19,10 @@ export default function Products() {
     <Layout>
       <div>
         <Link href={"/products/new"} className="flex items-center">
-          <div className=" bg-blue-600 flex items-center text-sm px-3 py-1 text-white rounded-tr-[16px] rounded-tl-[8px] rounded-bl-[16px] rounded-br-[8px] hover:bg-black hover:transition-all hover:duration-500 duration-500">
-            <span>Cadastrar</span>
-            <PlusSmallIcon className="w-5 font-bold" />
-          </div>
+          <Add text="Cadastrar" />
         </Link>
       </div>
+
       <div>
         <table className="basic mt-4">
           <thead>

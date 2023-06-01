@@ -5,11 +5,16 @@
 input,
 textarea,
 select {
-  @apply h-10 pl-2 flex border-[1px] rounded-lg border-gray-300 outline-none focus:text-sm focus:transition-all duration-300 focus:duration-300 focus:border-blue-400;
+  @apply h-10 px-2 flex font-bold border-[1px] rounded-lg border-gray-300 outline-none focus:transition-all duration-300 focus:duration-300 focus:border-blue-400;
+}
+
+input::placeholder,
+textarea::placeholder {
+  @apply text-black opacity-30 font-normal;
 }
 
 textarea {
-  @apply min-h-[80px] pt-2;
+  @apply min-h-[120px] pt-2 mt-4;
 }
 
 table.basic {
@@ -17,11 +22,11 @@ table.basic {
 }
 
 table.basic thead tr td {
-  @apply bg-white border border-slate-400 p-1 w-full;
+  @apply bg-white border border-neutral-200 px-4 py-2 w-full;
 }
 
 table.basic tbody tr td {
-  @apply border-slate-400 border p-1;
+  @apply border-neutral-200 border px-2 py-2;
 }
 
 img {
@@ -29,5 +34,9 @@ img {
 }
 
 select:focus {
-  @apply border-blue-600 text-base;
+  @apply border-blue-600 text-base font-bold;
+}
+
+label {
+  @apply text-neutral-500 text-sm;
 }
