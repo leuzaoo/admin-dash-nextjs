@@ -1,10 +1,10 @@
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 
-import { Roboto } from "next/font/google";
-const roboto = Roboto({
-  weight: ["100", "400", "700"],
-  style: ["normal", "italic"],
+import { Inter } from "next/font/google";
+const inter = Inter({
+  weight: ["100", "300", "400", "700"],
+  style: ["normal"],
   subsets: ["latin"],
 });
 
@@ -13,7 +13,7 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   return (
-    <main className={roboto.className}>
+    <main className={inter.className}>
       <SessionProvider session={session}>
         <Component {...pageProps} />
       </SessionProvider>
