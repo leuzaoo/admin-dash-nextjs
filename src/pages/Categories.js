@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Layout from "@/src/components/Layout";
-import SaveButton from "@/src/components/SaveButton";
-import EditButton from "@/src/components/EditButton";
-import DeleteButton from "@/src/components/DeleteButton";
+import SaveButton from "@/src/components/buttons/SaveButton";
+import EditButton from "@/src/components/buttons/EditButton";
+import DeleteButton from "@/src/components/buttons/DeleteButton";
 
 import { PlusIcon } from "@heroicons/react/24/outline";
 
@@ -115,8 +115,8 @@ function Categories({ swal }) {
 
   return (
     <Layout>
-      <h1 className="font-bold">Categorias*</h1>
-      <label className="text-sm font-bold">
+      <h1 className="font-bold mb-4">Categorias*</h1>
+      <label className="text-sm">
         {editedCategory
           ? `Editando: ${editedCategory.name}.`
           : "Criação de nova categoria*"}
@@ -142,7 +142,7 @@ function Categories({ swal }) {
           </select>
         </div>
         <div className="mt-8">
-          <label className="block text-sm font-bold">Propriedades*</label>
+          <label className="block">Propriedades*</label>
           <button
             onClick={addProperty}
             type="button"
@@ -200,7 +200,7 @@ function Categories({ swal }) {
           <thead>
             <tr>
               <td>Nome da Categoria</td>
-              <td>Categoria Principal</td>
+              <td>Principal</td>
               <td>Editar</td>
               <td>Excluir</td>
             </tr>

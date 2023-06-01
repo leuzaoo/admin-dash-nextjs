@@ -8,6 +8,8 @@ import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import LoaderIcon from "./LoaderIcon";
 import InputField from "./InputField";
+import SaveButton from "./buttons/SaveButton";
+import CancelButton from "./buttons/CancelButton";
 
 export default function ProductForm({
   _id,
@@ -178,18 +180,8 @@ export default function ProductForm({
           onChange={(ev) => setPrice(ev.target.value)}
         />
         <div className="flex gap-4">
-          <button
-            type="submit"
-            className="bg-blue-600 text-white rounded-lg center w-[94.8px] h-[40px] transition-all  hover:bg-black hover:transition-all hover:duration-500 duration-500"
-          >
-            Salvar
-          </button>
-          <button
-            href="/products"
-            className="bg-gray-200 py-2 px-4  rounded-lg transition-all duration-700 hover:bg-red-500 hover:transition-all hover:text-white hover:duration-300"
-          >
-            Cancelar
-          </button>
+          <SaveButton type="submit" text="Salvar" />
+          <CancelButton text="Cancelar" />
         </div>
       </div>
     </form>
