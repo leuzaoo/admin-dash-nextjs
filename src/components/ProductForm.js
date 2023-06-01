@@ -101,19 +101,21 @@ export default function ProductForm({
   return (
     <form onSubmit={saveProduct}>
       <div className="border-[1px] p-4 rounded flex flex-col gap-2">
-        <label className="text-sm font-bold">Informações do Produto*</label>
+        <label className="text-sm text-gray-400">Nome do Produto*</label>
         <input
+          className="bg-gray-100"
           type="text"
           placeholder="Nome"
           value={title}
           onChange={(ev) => setTitle(ev.target.value)}
         />
-        <label className="mt-4 text-sm font-bold">Categoria*</label>
+        <label className="mt-4 text-sm text-gray-400">Categoria*</label>
         <select
+          className="bg-gray-100"
           value={category}
           onChange={(ev) => setCategory(ev.target.value)}
         >
-          <option value="">Sem categoria</option>
+          <option>Sem categoria</option>
           {categories.length > 0 &&
             categories.map((c) => (
               <option key={c._id} value={c._id}>
@@ -123,9 +125,10 @@ export default function ProductForm({
         </select>
         {propertiesToFill.length > 0 &&
           propertiesToFill.map((p) => (
-            <div className="flex gap-4">
-              <div>{p.name}</div>
+            <div className="mt-4">
+              <div className="text-gray-400 text-sm">{p.name}*</div>
               <select
+                className="w-auto pr-4 mt-2 bg-gray-100"
                 value={productProperties[p.name]}
                 onChange={(ev) => setProductProp(p.name, ev.target.value)}
               >
