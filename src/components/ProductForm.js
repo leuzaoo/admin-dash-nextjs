@@ -113,7 +113,6 @@ export default function ProductForm({
         />
         <label className="mt-4">Categoria*</label>
         <select
-          className="bg-gray-100"
           value={category}
           onChange={(ev) => setCategory(ev.target.value)}
         >
