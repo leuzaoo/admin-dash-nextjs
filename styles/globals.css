@@ -5,7 +5,7 @@
 input,
 textarea,
 select {
-  @apply h-10 px-2 flex font-bold border-[1px] rounded-lg border-gray-300 outline-none focus:transition-all duration-300 focus:duration-300 focus:border-blue-400;
+  @apply h-10 px-2 bg-gray-100 flex font-bold border-[1px] rounded-lg border-gray-300 outline-none focus:transition-all duration-300 focus:duration-300 focus:border-blue-400;
 }
 
 input::placeholder,
