@@ -116,7 +116,7 @@ export default function ProductForm({
           value={category}
           onChange={(ev) => setCategory(ev.target.value)}
         >
-          <option>Escolha uma categoria</option>
+          <option value="">Escolha uma categoria</option>
           {categories.length > 0 &&
             categories.map((c) => (
               <option key={c._id} value={c._id}>
@@ -126,7 +126,7 @@ export default function ProductForm({
         </select>
         {propertiesToFill.length > 0 &&
           propertiesToFill.map((p) => (
-            <div className="mt-4">
+            <div key={p.name} className="mt-4">
               <div className="text-gray-400 text-sm">{p.name}*</div>
               <select
                 className="w-auto pr-4 mt-2 bg-gray-100"
@@ -134,7 +134,9 @@ export default function ProductForm({
                 onChange={(ev) => setProductProp(p.name, ev.target.value)}
               >
                 {p.values.map((v) => (
-                  <option value={v}>{v}</option>
+                  <option key={v} value={v}>
+                    {v}
+                  </option>
                 ))}
               </select>
             </div>
