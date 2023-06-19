@@ -56,5 +56,6 @@ export default function Products() {
         </table>
       </div>
     </Layout>
+    
   );
 }
