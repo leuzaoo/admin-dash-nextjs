@@ -21,7 +21,8 @@ table.basic {
   @apply w-full;
 }
 
-table.basic thead tr td {
+table.basic thead tr td,
+table.basic thead tr th {
   @apply bg-white border border-neutral-200 px-4 py-2 w-full;
 }
 
