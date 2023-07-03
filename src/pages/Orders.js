@@ -14,7 +14,7 @@ export default function Orders() {
       <table className="basic">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Data</th>
             <th>Destinatário</th>
             <th>Produto</th>
           </tr>
@@ -23,7 +23,9 @@ export default function Orders() {
           {orders.length > 0 &&
             orders.map((order) => (
               <tr>
-                <td>{order._id}</td>
+                <td>
+                  {new Date(order.createdAt).toLocaleString().substring(0, 17)}
+                </td>
                 <td>
                   {order.name} <br />
                   {order.email} <br />
