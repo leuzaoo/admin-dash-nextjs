@@ -27,12 +27,16 @@ export default function Orders() {
                   {new Date(order.createdAt).toLocaleString().substring(0, 17)}
                 </td>
                 <td>
+                  <span className="font-bold">Nome: </span>
                   {order.name} <br />
+                  <span className="font-bold">Email: </span>
                   {order.email} <br />
+                  <span className="font-bold">Telefone: </span>
                   {order.phoneNumber} <br />
+                  <span className="font-bold">Endereço: </span>
                   {order.streetAdress}
                 </td>
-                <td>
+                <td className="text-center">
                   {order.line_items.map((l) => (
                     <>
                       {l.price_data?.product_data?.name} x {l.quantity}
