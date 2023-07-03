@@ -39,7 +39,11 @@ export default function Orders() {
                 <td className="text-center">
                   {order.line_items.map((l) => (
                     <>
-                      {l.price_data?.product_data?.name} x {l.quantity}
+                      <span className="font-bold text-xl">
+                        {l.price_data?.product_data?.name}
+                      </span>{" "}
+                      Quantidade:
+                      {l.quantity}
                       <br />
                     </>
                   ))}
